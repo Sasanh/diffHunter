@@ -1,5 +1,5 @@
 # diffHunter
-
+![](http://www.iupui.edu/~sysbio/diffHunter/diffhunter_pic.png)
 mRNA stability, biogenesis and translation are greatly influenced by RNA-binding proteins (RBPs) which form mRNP complexes with their targeted mRNA. Several peak calling approaches are developed to identify protein binding sites on mRNA using short read data resulting from different cross-linking techniques. However, only few methods exist that are able to identify differential binding patterns in given pair of conditions. diffHunter is a window based peak calling approach that is not only able to identify the potential binding sites but also quantifies the differences in binding patterns among a pair of sample experiments. We employed a NoSQL approach for managing the underlying genomic read information and a concurrent mechanism for identifying the binding differences. Consequently, diffHunter is computationally efficient and a scalable software that is able to unambiguously quantify differential binding profiles between a pair of conditions and technically performs the comparison across any kind of high-throughput sequencing read samples such as CLIP and protein occupancy datasets. DiffHunter is available as both a command line software as well as a windows application that is able to quantify and visualize the differences.
 
 ##Parameters
