@@ -36,3 +36,9 @@ The following command compares the binding differences between sample1 and sampl
 java -jar diffHunter -c -r mm9.txt -1 /DB_Files/sample1 -2 /DB_Files/sample2 -w 200 -s 50 -o /OutputFolder
 ```
 ##Output Structure
+* <b><i>Gene_Symbol</i></b> : Symbol of the gene that shows differences in binding between two conditions. 
+* <b><i>Contributing_Sample</i></b> : A sample with higher number of reads within the region of difference compared to the other. 
+* <b><i>Start</i></b> : Start location of difference. 
+* <b><i>End</i></b> : Ending location of difference. 
+* <b><i> OddsRatio</i></b> : Odds ratio of reads mapped in the window of difference in two samples compared to the non-window region.
+* <b><i>p_Value</i></b> : Fisher Exact Test significance of difference in two samples. 
