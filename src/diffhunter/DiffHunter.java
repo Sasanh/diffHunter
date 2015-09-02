@@ -50,10 +50,10 @@ public class DiffHunter
             "-i", "-b", "J:\\VishalData\\additional\\Ptbp2_E18_5_cortex_CLIP_mm9_plus_strand_sorted.bed", "-r", "J:\\VishalData\\additional\\mouse_mm9.txt", "-o", "J:\\VishalData"
         };*/
 
-        args = new String[]
+        /*args = new String[]
         {
             "-c", "-r", "J:\\VishalData\\additional\\mouse_mm9.txt", "-1", "J:\\VishalData\\Ptbp2_Adult_testis_CLIP_mm9_plus_strand_sorted_BDB", "-2", "J:\\VishalData\\Ptbp2_E18_5_cortex_CLIP_mm9_plus_strand_sorted_BDB", "-w", "200", "-s", "50", "-o", "J:\\VishalData"
-        };
+        };*/
         Options options = new Options();
 
         // add t option
