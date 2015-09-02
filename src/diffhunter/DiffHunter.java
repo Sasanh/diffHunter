@@ -48,12 +48,12 @@ public class DiffHunter
         /*args = new String[]
         {
             "-i", "-b", "J:\\VishalData\\additional\\Ptbp2_E18_5_cortex_CLIP_mm9_plus_strand_sorted.bed", "-r", "J:\\VishalData\\additional\\mouse_mm9.txt", "-o", "J:\\VishalData"
-        };
+        };*/
 
         args = new String[]
         {
             "-c", "-r", "J:\\VishalData\\additional\\mouse_mm9.txt", "-1", "J:\\VishalData\\Ptbp2_Adult_testis_CLIP_mm9_plus_strand_sorted_BDB", "-2", "J:\\VishalData\\Ptbp2_E18_5_cortex_CLIP_mm9_plus_strand_sorted_BDB", "-w", "200", "-s", "50", "-o", "J:\\VishalData"
-        };*/
+        };
         Options options = new Options();
 
         // add t option
@@ -154,7 +154,7 @@ public class DiffHunter
             List<String> intersection_ = new ArrayList<>(first_condition_genes);
             intersection_.retainAll(second_condition_genes);
 
-            BufferedWriter output = new BufferedWriter(new FileWriter(Paths.get(folder_loc, "differences_" + window_ + "_s" + slide_ + "_c" + ".txt").toAbsolutePath().toString(), true));
+            BufferedWriter output = new BufferedWriter(new FileWriter(Paths.get(folder_loc, "differences_" + window_ + "_s" + slide_ + "_c" + ".txt").toAbsolutePath().toString(), false));
             List<Result_Window> final_results = Collections.synchronizedList(new ArrayList<>());
             Worker_New worker_class = new Worker_New();
             worker_class.Read_Reference(reference_file);
@@ -235,9 +235,11 @@ public class DiffHunter
                 final_results.clear();
 
             }
+            output.close();
 
         }
         System.out.println("Done.");
+        
 
     }
 
