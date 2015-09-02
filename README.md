@@ -4,7 +4,9 @@ A general scalable framework for comparing genome-wide protein occupancy profile
 
 ##Parameters
 
-usage: diffhunter
+
+
+```usage: diffhunter
  -1,--first <arg>       First condition
  -2,--second <arg>      Second condition
  -b,--bed <arg>         bed file to be indexed
@@ -15,3 +17,4 @@ usage: diffhunter
  -r,--reference <arg>   Reference annotation file to be used for indexing
  -s,--sliding <arg>     Length of sliding
  -w,--window <arg>      Length of window for identifying differences
+...``
