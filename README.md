@@ -16,6 +16,10 @@ $usage: diffhunter
  -s,--sliding <arg>     Length of sliding
  -w,--window <arg>      Length of window for identifying differences
 ```
+Requirements
+* Java 8 (1.8)
+* Reference genome annotation of an organism (GRCh37/38 for Human/Mouse references are located in References folder)
+
 ##Input File Format
 Currently, diffHunter takes <b>Sorted BED</b> files for generating the Oracle Berkeley db files. 
 
