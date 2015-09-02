@@ -28,5 +28,11 @@ Samples are needed to be indexed before comparison:
 
 Example:
 ```
-java -jar diffHunter -i -b sorted_sample.bed -r mouse_mm9.txt -o /location/home/DB_Files
+java -jar diffHunter -i -b sorted_sample.bed -r mm9.txt -o /DB_Files
 ```
+##Comparing binding differences between two samples
+The following command compares the binding differences between sample1 and sample2 in a windows size of 200 bps and sliding length of 50 bps.
+```
+java -jar diffHunter -c -r mm9.txt -1 /DB_Files/sample1 -2 /DB_Files/sample2 -w 200 -s 50 -o /OutputFolder
+```
+##Output Structure
