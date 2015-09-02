@@ -16,3 +16,13 @@ $usage: diffhunter
  -s,--sliding <arg>     Length of sliding
  -w,--window <arg>      Length of window for identifying differences
 ```
+##Input File Format
+Currently, diffHunter takes <b>Sorted BED</b> files for generating the Oracle Berkeley db files. 
+
+## Indexing a sample file
+Samples are needed to be indexed before comparison: 
+
+Example:
+```
+java -jar diffHunter -i -b sorted_sample.bed -r mouse_mm9.txt -o /location/home/DB_Files
+```
