@@ -42,3 +42,4 @@ java -jar diffHunter -c -r mm9.txt -1 /DB_Files/sample1 -2 /DB_Files/sample2 -w 
 * <b><i>End</i></b> : Ending location of difference. 
 * <b><i> OddsRatio</i></b> : Odds ratio of reads mapped in the window of difference in two samples compared to the non-window region.
 * <b><i>p_Value</i></b> : Fisher Exact Test significance of difference in two samples. 
+* <b><i>q_Value</i></b> : FDR value based on Benjamini Hochberg correction. 
