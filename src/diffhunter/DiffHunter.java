@@ -48,9 +48,9 @@ public class DiffHunter
         /*args = new String[]
         {
             "-i", "-b", "J:\\VishalData\\additional\\Ptbp2_E18_5_cortex_CLIP_mm9_plus_strand_sorted.bed", "-r", "J:\\VishalData\\additional\\mouse_mm9.txt", "-o", "J:\\VishalData"
-        };
+        };*/
 
-        args = new String[]
+        /*args = new String[]
         {
             "-c", "-r", "J:\\VishalData\\additional\\mouse_mm9.txt", "-1", "J:\\VishalData\\Ptbp2_Adult_testis_CLIP_mm9_plus_strand_sorted_BDB", "-2", "J:\\VishalData\\Ptbp2_E18_5_cortex_CLIP_mm9_plus_strand_sorted_BDB", "-w", "200", "-s", "50", "-o", "J:\\VishalData"
         };*/
@@ -154,7 +154,7 @@ public class DiffHunter
             List<String> intersection_ = new ArrayList<>(first_condition_genes);
             intersection_.retainAll(second_condition_genes);
 
-            BufferedWriter output = new BufferedWriter(new FileWriter(Paths.get(folder_loc, "differences_" + window_ + "_s" + slide_ + "_c" + ".txt").toAbsolutePath().toString(), true));
+            BufferedWriter output = new BufferedWriter(new FileWriter(Paths.get(folder_loc, "differences_" + window_ + "_s" + slide_ + "_c" + ".txt").toAbsolutePath().toString(), false));
             List<Result_Window> final_results = Collections.synchronizedList(new ArrayList<>());
             Worker_New worker_class = new Worker_New();
             worker_class.Read_Reference(reference_file);
@@ -210,10 +210,13 @@ public class DiffHunter
                     {
                         return;
                     }
+                    
+                   
                     List<Result_Window> res_temp = new Worker_New().Get_Significant_Windows(gene_of_interest, start, end, top_windows_first, top_windows_second, second_, first_, sample_name_first, sample_name_second, 0.01);
                     if (!res_temp.isEmpty())
                     {
                         final_results.addAll(res_temp);//final_results.addAll(worker_class.Get_Significant_Windows(gene_of_interest, start, end, top_windows_first, top_windows_second, second_, first_, first_condition, second_condition, 0.01));
+                        
                     }                //System.out.println(selected_genes.get(i)+"\tprocessed.");
 
                 }
@@ -224,20 +227,39 @@ public class DiffHunter
    
 
                  });*/
+                 List<Double> pvals=new ArrayList<>();
+                
+                 for (int i = 0; i < final_results.size(); i++)
+                {
+                        pvals.add(final_results.get(i).p_value);
+                }
+                 List<Double> qvals=MultipleTestCorrection.benjaminiHochberg(pvals);
+                 
                 System.out.println("Writing to file...");
-                output.append("Gene_Symbol\tContributing_Sample\tStart\tEnd\tOddsRatio\tp_Value");
+                output.append("Gene_Symbol\tContributing_Sample\tStart\tEnd\tOddsRatio\tp_Value\tFDR");
                 output.newLine();
-                for (Result_Window item : final_results)
+                
+                for (int i = 0; i < final_results.size(); i++)
+                {
+                    Result_Window item=final_results.get(i);
+                     output.append(item.associated_gene_symbol + "\t" + item.contributing_windows + "\t" + item.start_loc + "\t" + item.end_loc + "\t" + item.oddsratio_ + "\t" + item.p_value+"\t"+qvals.get(i)); //+ "\t" + item.average_other_readcount_cotributing + "\t" + item.average_other_readcount_cotributing + "\t" + item.average_window_readcount_non + "\t" + item.average_other_readcount_non);
+                    output.newLine();
+                }
+                
+               /* for (Result_Window item : final_results)
                 {
                     output.append(item.associated_gene_symbol + "\t" + item.contributing_windows + "\t" + item.start_loc + "\t" + item.end_loc + "\t" + item.oddsratio_ + "\t" + item.p_value); //+ "\t" + item.average_other_readcount_cotributing + "\t" + item.average_other_readcount_cotributing + "\t" + item.average_window_readcount_non + "\t" + item.average_other_readcount_non);
                     output.newLine();
                 }
+                       */
                 final_results.clear();
 
             }
+            output.close();
 
         }
         System.out.println("Done.");
+        
 
     }
 
